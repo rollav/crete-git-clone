@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.5</version>
+	</parent>
+	
+	<artifactId>learn-jakartaee</artifactId>
+	<groupId>web-ci</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>learn-jakartaee-web</name>
+	<description>Learn Jakarta EE - JSP</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>11</java.version>
+
+		<jakartaee.version>9.0.0</jakartaee.version>
+		<microprofile.version>4.0.1</microprofile.version>
+		<eclipse.transformer.version>0.2.0</eclipse.transformer.version>
+
+		<liberty-runtime.version>21.0.0.5-beta</liberty-runtime.version>
+		<liberty-maven-plugin.version>3.3.4</liberty-maven-plugin.version>
+	</properties>
+
+
+		<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>jakarta.platform</groupId>
+				<artifactId>jakarta.jakartaee-web-api</artifactId>
+				<version>${jakartaee.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.microprofile</groupId>
+				<artifactId>microprofile</artifactId>
+				<version>${microprofile.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.transformer</groupId>
+				<artifactId>org.eclipse.transformer.cli</artifactId>
+				<version>${eclipse.transformer.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<!-- ================================================ -->
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<!-- ================================================ -->
+	<build>
+		<plugins>
+			<plugin>
+				<!-- https://github.com/OpenLiberty/ci.maven -->
+				<groupId>io.openliberty.tools</groupId>
+				<artifactId>liberty-maven-plugin</artifactId>
+				<version>${liberty-maven-plugin.version}</version>
+				<configuration>
+					<runtimeArtifact>
+						<groupId>io.openliberty.beta</groupId>
+						<artifactId>openliberty-jakartaee9</artifactId>
+						<version>${liberty-runtime.version}</version>
+						<type>zip</type>
+					</runtimeArtifact>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
