@@ -29,7 +29,14 @@
 		<liberty-runtime.version>21.0.0.5-beta</liberty-runtime.version>
 		<liberty-maven-plugin.version>3.3.4</liberty-maven-plugin.version>
 	</properties>
-
+ 
+		<server>
+		<id>nexus</id> <username>admin</username> <password>admin</password>
+		</server> 
+		<mirror>
+		<id>nexus</id>
+		<mirrorOf>*</mirrorOf> <url>http://localhost:8081/repository/maven-public/</url>
+		</mirror>
 
 		<dependencyManagement>
 		<dependencies>
